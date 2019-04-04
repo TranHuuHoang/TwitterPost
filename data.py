@@ -63,7 +63,7 @@ def crawling_dengue_data(url='https://data.gov.sg/dataset/e7536645-6126-4358-b95
 
         
 
-schedule.every().monday.do(update)
+schedule.every().day.do(update)
 schedule.every().day.do(crawling_dengue_data)
 
 css = """
