@@ -95,7 +95,8 @@ background-color: white;
 </style>
 """
 
-imgkitoptions = {"format": "png"}
+imgkitoptions = {"format": "png",
+                 "crop-w": '700'}
 
 
 global haze_response
