@@ -11,6 +11,6 @@ Change EVERY path appear in the code to your path.
 
 Then in command line, direct to the maven project. (Using cd)
 
-Then type "mvn install"
+Then type: mvn install
 
-Then type "mvn exec:java -D"exec.mainClass"="com.codebind.TwitterPost"
+Then type: mvn exec:java -D"exec.mainClass"="com.codebind.TwitterPost"
