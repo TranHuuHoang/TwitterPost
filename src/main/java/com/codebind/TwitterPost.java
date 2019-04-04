@@ -88,34 +88,34 @@ public class TwitterPost {
         }  */
         
 // Update to Twitter        
-	//	while(true) {
+		while(true) {
 			//get Data by python
-			try { 
+			/*try { 
 			 
 				ProcessBuilder pb = new ProcessBuilder(Arrays.asList("C:/Users/Dell/AppData/Local/Programs/Python/Python36/python","E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dataTest.py"));
 				Process p = pb.start();
 				p.waitFor();
 			}catch(Exception e){
 				System.out.println(e);}
-			
+			*/
 			
 			//post to Twitter
-	/*		try {
+			try {
 				Twitter twitter = new TwitterFactory().getInstance();
 			
 				twitter.setOAuthConsumer(consumerKeyStr, consumerSecretStr);
 				AccessToken accessToken = new AccessToken(accessTokenStr,accessTokenSecretStr);
 	
 				twitter.setOAuthAccessToken(accessToken);
-				File fileHaze = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/haze_status.png"); 
+				File fileHaze = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/haze_status.png"); 
 				String message1 = "This is the Pollutant Standards Index Report for today! (Update time:" +(String)items.get("update_timestamp")+")";
 				StatusUpdate statusHaze = new StatusUpdate(message1);
 				statusHaze.setMedia(fileHaze);
 				twitter.updateStatus(statusHaze);
-		        File input = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/dengue_status.png");
+		        File input = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status.png");
 		        BufferedImage image = ImageIO.read(input);
 
-		        File output = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/dengue_status_compressed.png");
+		        File output = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status_compressed.png");
 		        OutputStream out = new FileOutputStream(output);
 
 		        ImageWriter writer =  ImageIO.getImageWritersByFormatName("png").next();
@@ -133,7 +133,7 @@ public class TwitterPost {
 		        writer.dispose();
 
 
-				File fileDengue = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/dengue_status_compressed.png"); 
+				File fileDengue = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status_compressed.png"); 
 				String message2 = "This is the Dengue Cluster Report for today! (Update time:" +(String)items.get("update_timestamp")+")";
 				StatusUpdate statusDengue = new StatusUpdate(message2);
 				statusDengue.setMedia(fileDengue);
@@ -148,8 +148,8 @@ public class TwitterPost {
 			} catch (InterruptedException e) {
 				System.out.println("Stopped!");
 				break;
-			}  */
-	//	}
+			}  
+		}
 	}	
 	
 	private static void parseListObject(JSONObject list)
