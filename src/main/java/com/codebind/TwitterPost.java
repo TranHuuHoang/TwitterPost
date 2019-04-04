@@ -137,8 +137,8 @@ public class TwitterPost {
 				String message2 = "This is the Dengue Cluster Report for today! (Update time:" +(String)items.get("update_timestamp")+")";
 				StatusUpdate statusDengue = new StatusUpdate(message2);
 				statusDengue.setMedia(fileDengue);
-				twitter.updateStatus(statusDengue);				
-	
+				twitter.updateStatus(statusDengue);
+				//twitter.updateStatus(items.toString());
 				System.out.println("Successfully updated the status in Twitter.");
 				Thread.sleep(86400000);
 

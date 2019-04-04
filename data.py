@@ -106,7 +106,13 @@ while 1:
     if not os.path.isfile('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status.png'):     #Change to your path
         crawling_dengue_data()
         today = pickle.load(open('today.obj','rb'))
-    else: today = pickle.load(open('today.obj','rb'))
+    else: 
+    	today_file = pickle.load(open('today.obj','rb'))
+    	today = datetime.today()
+    	if (today.year, today.month, today.day) != (today_file.year, today_file.month, today_file.day):
+    		crawling_dengue_data()
+    	else:
+    		today = today_file
     haze_response = requests.get(url).json()
     haze_status = {}
     haze_status = {'POLUTION_INDEX_TYPE': [],'WEST': [], 'NATIONAL': [], 'EAST': [], 'CENTRAL': [], 'SOUTH': [], 'NORTH': []}
