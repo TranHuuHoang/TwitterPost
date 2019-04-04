@@ -49,7 +49,7 @@ public class TwitterPost {
 	static String accessTokenStr = "1106831010304397312-8ND3tBmpHQLbQMUMgTHZcnsHo6mabU";
 	static String accessTokenSecretStr = "jsq87Fd7zkKvudHZTtZmAVz8UD98go40kvZYIzJKAdN2n";
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		//JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
         /* new WebCrawler().getPageLinks("https://api.data.gov.sg/v1/environment/psi"); */
@@ -57,48 +57,19 @@ public class TwitterPost {
 		JSONObject psiData = jsonGetRequest("https://api.data.gov.sg/v1/environment/psi");
 		JSONArray itList = (JSONArray) psiData.get("items");
 		JSONObject items = (JSONObject) itList.get(0);
-	//	System.out.println(items.get("update_timestamp"));	
-	//	System.out.println(items.get("readings"));
 		JSONObject statusPSI = (JSONObject) items.get("readings");
-        
-//Get with dengue json data => OK     
-    /*    try (
-            InputStream is = TwitterPost.class.getResourceAsStream("/dengue-clusters-geojson.geojson");
-      	
-        	BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        )
-        {
-            //Read JSON file
-            Object obj = jsonParser.parse(reader);
-            
-            //Put [] at the start and end of the geojson file
-            
-            JSONArray List = (JSONArray) obj;
-            System.out.println(List);
-             
-            //Iterate over the array
-         //   List.forEach(ls -> parseListObject((JSONObject) ls));
- 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }  */
-        
+                
 // Update to Twitter        
 		while(true) {
 			//get Data by python
-			/*try { 
+			try { 
 			 
-				ProcessBuilder pb = new ProcessBuilder(Arrays.asList("C:/Users/Dell/AppData/Local/Programs/Python/Python36/python","E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dataTest.py"));
+				ProcessBuilder pb = new ProcessBuilder(Arrays.asList("C:/Users/Dell/AppData/Local/Programs/Python/Python36/python","E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/data.py"));
 				Process p = pb.start();
-				p.waitFor();
 			}catch(Exception e){
 				System.out.println(e);}
-			*/
 			
+			Thread.sleep(5000);
 			//post to Twitter
 			try {
 				Twitter twitter = new TwitterFactory().getInstance();
@@ -138,7 +109,6 @@ public class TwitterPost {
 				StatusUpdate statusDengue = new StatusUpdate(message2);
 				statusDengue.setMedia(fileDengue);
 				twitter.updateStatus(statusDengue);
-				//twitter.updateStatus(items.toString());
 				System.out.println("Successfully updated the status in Twitter.");
 				Thread.sleep(86400000);
 
@@ -152,14 +122,6 @@ public class TwitterPost {
 		}
 	}	
 	
-	private static void parseListObject(JSONObject list)
-    {
-        JSONObject listObject = (JSONObject) list.get("name");
-         
-        String coordinates = (String) listObject.get("coordinates");   
-        System.out.println(coordinates);
-   
-    }
 	  private static String streamToString(InputStream inputStream) {
 		    String text = new Scanner(inputStream, "UTF-8").useDelimiter("\\Z").next();
 		    return text;

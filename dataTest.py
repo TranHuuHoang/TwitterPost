@@ -103,7 +103,7 @@ global haze_response
 global today
 
 while 1:
-    if not os.path.isfile('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status.png'):     #Change to your path
+    if not os.path.isfile('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/dengue_status.png'):     #Change to your path
         crawling_dengue_data()
         today = pickle.load(open('today.obj','rb'))
     else: today = pickle.load(open('today.obj','rb'))
