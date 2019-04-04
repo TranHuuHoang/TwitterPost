@@ -28,6 +28,7 @@ waiting_for_adminKey = set()
 url='https://api.data.gov.sg/v1/environment/psi'
   
 def update():
+	#change to your path
     haze_photo = open('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/haze_status.png','rb')
     dengue_photo = open('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status.png', 'rb')
         
@@ -39,7 +40,8 @@ def crawling_dengue_data(url='https://data.gov.sg/dataset/e7536645-6126-4358-b95
     dengue_data = json.load(zipfile.open('dengue-clusters-geojson.geojson', 'r'))
     dengue_status = {'LOCATION': [], 'CASE_SIZE': []}
     today = datetime.today().replace(microsecond=0)
-    pickle.dump(today, open('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/today.obj','wb'))
+    pickle.dump(today, open('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/today.obj','wb')) #change to your path
+
     
     for feature in dengue_data['features']:
         soup = BS(feature['properties']['Description'], 'html.parser')
@@ -55,12 +57,13 @@ def crawling_dengue_data(url='https://data.gov.sg/dataset/e7536645-6126-4358-b95
                 dengue_status['CASE_SIZE'].append(child.td.string)
                 break
     dengue_status = pd.DataFrame(dengue_status)
-    text_file = open('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status.html', 'w+')
+    text_file = open('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status.html', 'w+') #change to your path
+
     text_file.write(css)
     text_file.write(dengue_status.to_html())
     text_file.close()
     imgkit.from_file("E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status.html", "E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status.png", options=imgkitoptions) 
-
+    #change to your path
         
 
 schedule.every().day.do(update)
@@ -103,7 +106,8 @@ global haze_response
 global today
 
 while 1:
-    if not os.path.isfile('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status.png'):     #Change to your path
+    if not os.path.isfile('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status.png'):  #change to your path
+    #Change to your path
         crawling_dengue_data()
         today = pickle.load(open('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/today.obj','rb'))
     else: 
@@ -122,10 +126,11 @@ while 1:
             haze_status[region.upper()].append(index_val)
     haze_status = pd.DataFrame(haze_status)
     haze_status = haze_status[['POLUTION_INDEX_TYPE', 'WEST', 'NATIONAL', 'EAST', 'CENTRAL', 'SOUTH', 'NORTH']]
-    text_file = open('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/haze_status.html', 'w+')
+    text_file = open('E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/haze_status.html', 'w+') #change to your path
     text_file.write(css)
     text_file.write(haze_status.to_html())
     text_file.close()
+    #change to your path
     imgkit.from_file("E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/haze_status.html", "E:/Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/haze_status.png", options=imgkitoptions)
     schedule.run_pending()
     time.sleep(43200)

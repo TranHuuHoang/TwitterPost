@@ -7,6 +7,6 @@ junit-4.10.jar
 
 Then open an IDE (Eclipse IDE), open the project.
  
-Change any path appear in the code to your path.
+Change EVERY path appear in the code to your path.
 
 Then Run
