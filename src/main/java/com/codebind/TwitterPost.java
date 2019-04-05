@@ -10,14 +10,10 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,14 +22,8 @@ import java.io.OutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
@@ -51,12 +41,10 @@ public class TwitterPost {
 	public static void main(String[] args) throws IOException, InterruptedException {
 		//JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
-        /* new WebCrawler().getPageLinks("https://api.data.gov.sg/v1/environment/psi"); */
 		
 		JSONObject psiData = jsonGetRequest("https://api.data.gov.sg/v1/environment/psi");
 		JSONArray itList = (JSONArray) psiData.get("items");
 		JSONObject items = (JSONObject) itList.get(0);
-		JSONObject statusPSI = (JSONObject) items.get("readings");
                 
 // Update to Twitter        
 		while(true) {
@@ -121,10 +109,6 @@ public class TwitterPost {
 		}
 	}	
 	
-	  private static String streamToString(InputStream inputStream) {
-		    String text = new Scanner(inputStream, "UTF-8").useDelimiter("\\Z").next();
-		    return text;
-		  }
 	  	//Crawling data from online API
 	  public static JSONObject jsonGetRequest(String urlQueryString) {
 		    JSONObject json = null;
