@@ -1,7 +1,6 @@
 package com.codebind;
 
 import java.lang.Thread;
-import java.util.Scanner;
 
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
@@ -51,12 +50,12 @@ public class TwitterPost {
 			//get Data by python
 			try { 
 			 
-				ProcessBuilder pb = new ProcessBuilder(Arrays.asList("C:/Users/Dell/AppData/Local/Programs/Python/Python36/python","E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/data.py"));
+				ProcessBuilder pb = new ProcessBuilder(Arrays.asList("C:/Users/Dell/AppData/Local/Programs/Python/Python36/python","./data.py"));
 				Process p = pb.start();
 			}catch(Exception e){
 				System.out.println(e);}
 			
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 			//post to Twitter
 			try {
 				Twitter twitter = new TwitterFactory().getInstance();
@@ -65,15 +64,15 @@ public class TwitterPost {
 				AccessToken accessToken = new AccessToken(accessTokenStr,accessTokenSecretStr);
 	
 				twitter.setOAuthAccessToken(accessToken);
-				File fileHaze = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/haze_status.png"); 
+				File fileHaze = new File("./haze_status.png"); 
 				String message1 = "This is the Pollutant Standards Index Report for today! (Update time:" +(String)items.get("update_timestamp")+")";
 				StatusUpdate statusHaze = new StatusUpdate(message1);
 				statusHaze.setMedia(fileHaze);
 				twitter.updateStatus(statusHaze);
-		        File input = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status.png");
+		        File input = new File("./dengue_status.png");
 		        BufferedImage image = ImageIO.read(input);
 
-		        File output = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status_compressed.png");
+		        File output = new File("./dengue_status_compressed.png");
 		        OutputStream out = new FileOutputStream(output);
 
 		        ImageWriter writer =  ImageIO.getImageWritersByFormatName("png").next();
@@ -91,7 +90,7 @@ public class TwitterPost {
 		        writer.dispose();
 
 
-				File fileDengue = new File("E://Computer Science Study Year 2/aSEM 2 YEAR 2/CZ3003/Code/maven-demo/dengue_status_compressed.png"); 
+				File fileDengue = new File("./dengue_status_compressed.png"); 
 				String message2 = "This is the Dengue Cluster Report for today! (Update time:" +(String)items.get("update_timestamp")+")";
 				StatusUpdate statusDengue = new StatusUpdate(message2);
 				statusDengue.setMedia(fileDengue);
