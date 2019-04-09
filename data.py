@@ -15,7 +15,7 @@ from zipfile import ZipFile
 
 
 
-config = imgkit.config(wkhtmltoimage='./wkhtmltoimage.exe')    #change your path
+# config = imgkit.config(wkhtmltoimage='C:/Program Files/wkhtmltopdf/wkhtmltoimage.exe')    #change your path
 
 try:
     adminKeyFile = open('adminKey.txt','r')
